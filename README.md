@@ -1,20 +1,13 @@
-# http4s giter8 template [![Build Status](https://travis-ci.org/http4s/http4s.g8.svg)](https://travis-ci.org/http4s/http4s.g8)
+# http4s apidoc template [![Build Status](https://travis-ci.org/valydia/http4s-apidoc.g8.svg)](https://travis-ci.org/valydia/http4s-apidoc.g8)
 
-Generate an http4s service on the blaze backend with Circe.
+This template is based on the [http4s.g8](https://travis-ci.org/http4s/http4s.g8) template.  
+Generate an http4s service documented with [sbt-apidoc][]
 
 1. [Install sbt](http://www.scala-sbt.org/1.0/docs/Setup.html)
-2. `sbt new http4s/http4s.g8`
-3. `cd quickstart`
+2. `sbt new valydia/http4s-apidoc.g8`
+3. `cd http4s-apidoc`
 4. `sbt run`
-5. `curl http://localhost:8080/hello/$USER`
-6. [Learn more](http://http4s.org/)
+5. `open http://localhost:8080/apidoc`
+6. [Learn more][sbt-apidoc]
 
-
-Note:
-
-We have enabled [sbt-partial-unification](https://github.com/fiadliel/sbt-partial-unification) 
-necessary for utilizing all features of Http4s and Cats.
-As well as [sbt-revolver](https://github.com/spray/sbt-revolver) for easier project reloading.
-
-We have commented out the [sbt-tpolecat](https://github.com/DavidGregory084/sbt-tpolecat) plugin in the generated `project/plugins.sbt`.
-We highly recommend it for projects, but it may not be a good baseline for new users.
+[sbt-apidoc]: https://github.com/valydia/sbt-apidoc
