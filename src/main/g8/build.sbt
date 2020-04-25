@@ -7,8 +7,14 @@ lazy val root = (project in file("."))
   .settings(
     organization := "$organization$",
     name := "$name;format="norm"$",
-    version := "0.0.1-SNAPSHOT",
+    version := "0.1.0",
     scalaVersion := "$scala_version$",
+    // Generate output in the classDirectory so that it can be serve from the staticRoute
+    apidocOutputDir := (classDirectory in Compile).value / "apidoc",
+    apidocTitle := Some("""http4s with sbt-apidoc Demo"""),
+    apidocSampleURL := Some("http://localhost:8080"),
+    // Make the apidoc run before the run command
+    run := (run in Compile).dependsOn(apidoc).evaluated,
     libraryDependencies ++= Seq(
       "org.http4s"      %% "http4s-blaze-server" % Http4sVersion,
       "org.http4s"      %% "http4s-blaze-client" % Http4sVersion,
@@ -28,5 +34,5 @@ scalacOptions ++= Seq(
   "-language:higherKinds",
   "-language:postfixOps",
   "-feature",
-  "-Xfatal-warnings",
+  "-Xfatal-warnings"
 )

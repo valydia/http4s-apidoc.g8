@@ -1,0 +1,7 @@
+>apidoc
+
+$ exists target/scala-2.13/classes/apidoc/index.html
+$ exists target/scala-2.13/classes/apidoc/api_data.js
+$ exists target/scala-2.13/classes/apidoc/api_project.js
+$ exists target/scala-2.13/classes/apidoc/api_data.json
+$ exists target/scala-2.13/classes/apidoc/api_project.json

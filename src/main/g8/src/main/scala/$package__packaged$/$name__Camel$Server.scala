@@ -1,6 +1,6 @@
 package $package$
 
-import cats.effect.{ConcurrentEffect, ContextShift, Timer}
+import cats.effect.{Blocker, ConcurrentEffect, ContextShift, Timer}
 import cats.implicits._
 import fs2.Stream
 import org.http4s.client.blaze.BlazeClientBuilder
@@ -17,13 +17,16 @@ object $name;format="Camel"$Server {
       helloWorldAlg = HelloWorld.impl[F]
       jokeAlg = Jokes.impl[F](client)
 
+      blocker <- Stream.resource(Blocker[F])
       // Combine Service Routes into an HttpApp.
       // Can also be done via a Router if you
       // want to extract a segments not checked
       // in the underlying routes.
       httpApp = (
         $name;format="Camel"$Routes.helloWorldRoutes[F](helloWorldAlg) <+>
-        $name;format="Camel"$Routes.jokeRoutes[F](jokeAlg)
+        $name;format="Camel"$Routes.jokeRoutes[F](jokeAlg) <+>
+        $name;format="Camel"$Routes.staticRoutes[F](blocker) <+>
+        $name;format="Camel"$Routes.apidocRoutes[F]
       ).orNotFound
 
       // With Middlewares in place
